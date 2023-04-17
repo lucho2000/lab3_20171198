@@ -28,7 +28,7 @@ public interface PacienteRepository extends JpaRepository<Paciente,Integer> {
 
     @Modifying
     @Transactional
-    @Query( value = "update paciente set doctor_id = ?2 where doctor_id = ?1",nativeQuery = true)
+    @Query( value = "update paciente set doctor_id = ?1 where doctor_id = ?2",nativeQuery = true)
     void derivarPacientes(Integer id1, Integer id2);
 
 }

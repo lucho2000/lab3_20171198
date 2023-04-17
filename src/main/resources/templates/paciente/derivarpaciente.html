@@ -13,11 +13,11 @@
     <div class="container px-4 py-5">
         <h1 class="pb-2 mb-4 border-bottom">Derivar paciente</h1>
         <form method="post" th:action="@{'/paciente/guardarDerivado'}" class="col-4">
-            <input th:value="${paciente.id}" name="id" type="hidden" />
+            <input th:value="${paciente.doctor.id}" name="id" type="hidden" />
             <div class="mb-3">
-                <label for="doctores" class="form-label">Derivar del doctor: </label>
+                <label for="id" class="form-label">Derivar del doctor: </label>
 
-                <select id="doctores">
+                <select id="id">
                     <option
                             th:selected="${paciente.doctor.nombre}"
                             th:each="doctor: ${listaDoc}"
@@ -25,10 +25,11 @@
                             th:text="${doctor.nombre}"></option>
                 </select>
             </div>
+            <input th:value="${paciente.doctor.id}" name="id2" type="hidden" />
             <div class="mb-3">
-                <label for="doctoresx" class="form-label">Al doctor: </label>
+                <label for="id2" class="form-label">Al doctor: </label>
 
-                <select id="doctoresx">
+                <select id="id2">
                     <option
                             th:each="doctor: ${listaDoc}"
                             th:value="${doctor.id}"
