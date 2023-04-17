@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -15,10 +18,14 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String nombre;
+    private String nombre;
 
-    String genero;
+    private String especialidad;
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    Hospital hospital;
 
-    @Column(name = "hospital_id")
-    int hospital_id;
+    @OneToMany(mappedBy = "doctor")
+    List<Paciente> pacientes = new ArrayList<>();
+
 }

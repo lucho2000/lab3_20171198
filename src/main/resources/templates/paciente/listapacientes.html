@@ -7,7 +7,7 @@
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
         crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/static/estilonavbar.css">
-  <title>doctor list</title>
+  <title>client list</title>
 </head>
 <body>
 
@@ -20,23 +20,34 @@
       <li><a th:href="@{/paciente/listar}">Pacientes</a></li>
     </ul>
   </nav>
-  <h2>Lista hospitales</h2>
+
+  <h2>Lista pacientes</h2>
+  <!--<a class="btn btn-primary mt-4 mb-4" th:href="@{/nuevo}">Nuevo paciente</a>-->
   <table class="table table-sm">
     <tr>
       <th>#</th>
       <th>Nombre</th>
-      <th>direccion</th>
-      <th>Teléfono</th>
-      <th></th>
-      <th></th>
+      <th>edad</th>
+      <th>genero</th>
+      <th>diagnostico</th>
+      <th>fecha cita</th>
+      <th>numero habitac.</th>
+      <th>Doctor</th>
+      <th>Hospital</th>
     </tr>
-    <tr th:each="hospital,obj: ${lista}">
+    <tr th:each="paciente,obj: ${lista}">
       <td th:text="${obj.index+1}"> </td>
-      <td th:text="${hospital.nombre}"></td>
-      <td th:text="${hospital.direccion}"></td>
-      <td th:text="${hospital.telefono}"></td>
-      <td><a th:href="@{'/hospital/doctores?idHospital=' + ${hospital.getId()}}">mostrar doctores</a></td>
-      <td><a th:href="@{'/hospital/pacientes?idHospital=' + ${hospital.getId()}}">mostrar pacientes</a></td>
+      <td th:text="${paciente.nombre}"></td>
+      <td th:text="${paciente.edad}"></td>
+      <td th:text="${paciente.genero}"></td>
+      <td th:text="${paciente.diagnostico}"></td>
+      <td th:text="${paciente.fecha_cita}"></td>
+      <td th:text="${paciente.numero_habitacion}"></td>
+      <td th:text="${paciente.doctor.nombre}"></td>
+      <td th:text="${paciente.hospital.nombre}"></td>
+
+      <td><a th:href="@{'/paciente/editar' + '?id=' + ${paciente.getId()}}">editar paciente</a></td>
+      <td><a th:href="@{'/paciente/derivar' + '?id=' + ${paciente.id}}">derivar paciente</a></td>
     </tr>
   </table>
 </div>

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.print.Doc;
+
 @Entity
 @Getter
 @Setter
@@ -14,22 +16,25 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String nombre;
+    private String nombre;
 
-    String edad;
+    private String edad;
 
-    String genero;
+    private String genero;
+
+    private String diagnostico;
 
     @Column(name = "fecha_cita")
-    String fecha_cita;
+    private String fecha_cita;
 
-    int numero_habitacion;
+    private int numero_habitacion;
 
-    @Column(name = "doctor_id")
-    int doctor_id;
-
-    @Column(name = "hospital_id")
-    int hospital_id;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    Doctor doctor;
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    Hospital hospital;
 
 
 }

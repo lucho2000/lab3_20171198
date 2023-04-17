@@ -20,17 +20,17 @@ public class HospitalController {
         this.hospitalRepository = hospitalRepository;
     }
 
-    @GetMapping("/listar")
+    @GetMapping(value = "/listar")
     public String listar(Model model) {
 
         model.addAttribute("lista", hospitalRepository.findAll());
         return "hospital/listahospital";
     }
 
-    @GetMapping("/nuevo")
-    public String nuevo() {
+    //@GetMapping("/nuevo")
+    /*public String nuevo() {
         return "hospital/nuevohospital";
-    }
+    }*/
 
     @PostMapping("/guardar")
     public String guardar(Hospital hospital) {
@@ -39,6 +39,27 @@ public class HospitalController {
 
         return "redirect:/listar";
     }
+
+
+    @GetMapping("/doctores")
+    public String mostrarDoctores(Model model,Integer idHospital){
+        model.addAttribute("listaDoc", hospitalRepository.findById(idHospital).get());
+        //Optional<Paciente> optPac = pacienteRepository.findAllById(idPaciente);
+
+        return "hospital/doctores";
+
+    }
+
+
+    @GetMapping("/pacientes")
+    public String mostrarPacientes(Model model,Integer idHospital){
+        model.addAttribute("listaPac", hospitalRepository.findById(idHospital).get());
+        //Optional<Paciente> optPac = pacienteRepository.findAllById(idPaciente);
+
+        return "hospital/pacientes";
+
+    }
+
 
 
 }
